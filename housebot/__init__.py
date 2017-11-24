@@ -10,12 +10,11 @@ def create_app():
     app = Flask(__name__)
     # app.config.from_object(os.environ['APP_SETTINGS'])
 
-    db.init_app(app)
-    with app.test_request_context():
-        db.create_all()
+    # db.init_app(app)
+    # with app.test_request_context():
+    #     db.create_all()
 
-    import housebot.housemodule.controllers as housem
-
-    app.register_blueprint(housem.module)
+    from housebot.housemodule import controllers
+    app.register_blueprint(controllers.module)
 
     return app
